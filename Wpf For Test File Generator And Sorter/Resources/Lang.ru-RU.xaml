@@ -1,0 +1,13 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!-- File -->
+    <sys:String x:Key="MenuFile">Файл</sys:String>
+    <sys:String x:Key="MenuExit">Выход</sys:String>
+    <!-- App -->
+    <sys:String x:Key="MenuGenAndSort">Работа с файлами</sys:String>
+    <sys:String x:Key="MenuGenAndSortTab">Генератор и сортировщик файлов</sys:String>
+    <!-- About -->
+    <sys:String x:Key="MenuLanguage">Язык</sys:String>
+    <sys:String x:Key="MenuAbout">О программе</sys:String>
+</ResourceDictionary>

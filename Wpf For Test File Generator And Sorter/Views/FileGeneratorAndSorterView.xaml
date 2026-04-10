@@ -1,0 +1,190 @@
+<UserControl x:Class="Wpf_For_Test_File_Generator_And_Sorter.Views.FileGeneratorAndSorterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:Wpf_For_Test_File_Generator_And_Sorter.ViewModels"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=viewModels:FileGeneratorAndSorterViewModel, IsDesignTimeCreatable=False}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0"
+               Content="Generate File"
+               HorizontalAlignment="Center" FontWeight="Bold" />
+        <Button Grid.Column="0" Grid.Row="1"
+                IsEnabled="{Binding IsGenerating, Converter={StaticResource InverseBooleanConverter}}"
+                Content="0.1GB"
+                Command="{Binding Gen01GbCommand}"
+                CommandParameter="0.1"
+                Height="50" Margin="15"
+                FontWeight="Bold" FontSize="18">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Grid.Column="1" Grid.Row="1"
+                IsEnabled="{Binding IsGenerating, Converter={StaticResource InverseBooleanConverter}}"
+                Content="1GB"
+                Command="{Binding Gen1GbCommand}"
+                CommandParameter="1"
+                Height="50" Margin="15"
+                FontWeight="Bold" FontSize="18">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Grid.Column="2" Grid.Row="1"
+                IsEnabled="{Binding IsGenerating, Converter={StaticResource InverseBooleanConverter}}"
+                Content="5GB"
+                Command="{Binding Gen5GbCommand}"
+                CommandParameter="5"
+                Height="50" Margin="15"
+                FontWeight="Bold" FontSize="18">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Grid.Column="0" Grid.Row="2"
+                IsEnabled="{Binding IsGenerating, Converter={StaticResource InverseBooleanConverter}}"
+                Content="10GB"
+                Command="{Binding Gen10GbCommand}"
+                CommandParameter="10"
+                Height="50" Margin="15"
+                FontWeight="Bold" FontSize="18">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Grid.Column="1" Grid.Row="2"
+                IsEnabled="{Binding IsGenerating, Converter={StaticResource InverseBooleanConverter}}"
+                Content="50GB"
+                Command="{Binding Gen50GbCommand}"
+                CommandParameter="50"
+                Height="50" Margin="15"
+                FontWeight="Bold" FontSize="18">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Grid.Column="2" Grid.Row="2"
+                IsEnabled="{Binding IsGenerating, Converter={StaticResource InverseBooleanConverter}}"
+                Content="100GB"
+                Command="{Binding Gen100GbCommand}"
+                CommandParameter="100"
+                Height="50" Margin="15"
+                FontWeight="Bold" FontSize="18">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Label Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3"
+               Content="Custom GB (Enter file size)"
+               HorizontalAlignment="Center" FontWeight="Bold" />
+        <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4"
+                 IsEnabled="{Binding IsGenerating, Converter={StaticResource InverseBooleanConverter}}"
+                 Name="CustomSize"
+                 MinWidth="100"
+                 HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Button Grid.Column="2" Grid.Row="4"
+                IsEnabled="{Binding IsGenerating, Converter={StaticResource InverseBooleanConverter}}"
+                Content="Gen"
+                Command="{Binding GenCustomGbCommand}"
+                CommandParameter="{Binding ElementName=CustomSize, Path=Text}"
+                Margin="15"
+                FontWeight="Bold">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Label Grid.Column="3" Grid.Row="0"
+               Content="Generated Files"
+               HorizontalAlignment="Center" FontWeight="Bold" />
+        <ListView Grid.Column="3" Grid.Row="1" Grid.RowSpan="3"
+                  ItemsSource="{Binding Files}"
+                  SelectedItem="{Binding SelectedFile}"
+                  Margin="5">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="File Name" DisplayMemberBinding="{Binding}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Grid Grid.Column="3" Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0"
+                    Content="Open Folder"
+                    HorizontalAlignment="Center"
+                    Command="{Binding OpenFolderCommand}"
+                    Margin="0, 15,0,15"
+                    FontWeight="Bold">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5" />
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+            <Button Grid.Column="1"
+                    Content="Sort"
+                    HorizontalAlignment="Center"
+                    Command="{Binding SortCommand}"
+                    Margin="0, 15,0,15"
+                    FontWeight="Bold">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5" />
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+
+        <Label Grid.Column="4" Grid.Row="0"
+               Content="Sorted Files"
+               HorizontalAlignment="Center" FontWeight="Bold" />
+        <ListView Grid.Column="4" Grid.Row="1" Grid.RowSpan="3"
+                  ItemsSource="{Binding SortedFiles}"
+                  Margin="5">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="File Name" DisplayMemberBinding="{Binding}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

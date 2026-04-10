@@ -1,0 +1,13 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!-- File -->
+    <sys:String x:Key="MenuFile">File</sys:String>
+    <sys:String x:Key="MenuExit">Exit</sys:String>
+    <!-- App -->
+    <sys:String x:Key="MenuGenAndSort">Working with files</sys:String>
+    <sys:String x:Key="MenuGenAndSortTab">File Generator and Sorter</sys:String>
+    <!-- About -->
+    <sys:String x:Key="MenuLanguage">Language</sys:String>
+    <sys:String x:Key="MenuAbout">About</sys:String>
+</ResourceDictionary>
